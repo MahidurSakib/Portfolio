@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- ====== Meta & SEO ====== -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>S M Mahidur Rahman — Portfolio</title>
+  <meta name="description" content="S M Mahidur Rahman's personal website — projects, education, skills, and contact." />
+  <link rel="canonical" href="" />
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:title" content="S M Mahidur Rahman — Portfolio" />
+  <meta property="og:description" content="S M Mahidur Rahman's personal website — projects, education, skills, and contact." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="images/og.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <meta name="theme-color" content="#0f172a" />
+
+  <!-- Font -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+
+  <style>
+    :root{
+      --bg: #0b1220;
+      --panel: #0f172a;
+      --muted: #94a3b8;
+      --text: #e2e8f0;
+      --accent: #22d3ee;
+      --accent-2: #a78bfa;
+      --ring: rgba(34,211,238,0.35);
+      --radius: 14px;
+      --shadow: 0 10px 30px rgba(2,8,23,0.45);
+      --maxw: 1100px;
+    }
+    @media (prefers-color-scheme: light){
+      :root{
+        --bg: #f8fafc;
+        --panel: #ffffff;
+        --muted: #475569;
+        --text: #0f172a;
+        --shadow: 0 8px 24px rgba(15,23,42,0.08);
+      }
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0; font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: radial-gradient(1000px 600px at 10% -10%, rgba(167,139,250,0.08), transparent 60%),
+                  radial-gradient(800px 500px at 90% 10%, rgba(34,211,238,0.08), transparent 60%),
+                  var(--bg);
+      color:var(--text);
+      line-height:1.6;
+    }
+    a{color:inherit}
+    img{max-width:100%; height:auto; display:block}
+
+    .wrap{max-width:var(--maxw); margin:0 auto; padding:0 20px}
+    header{
+      position:sticky; top:0; z-index:1000;
+      backdrop-filter:saturate(180%) blur(10px);
+      background: color-mix(in oklab, var(--panel) 70%, transparent);
+      border-bottom:1px solid color-mix(in oklab, var(--text) 12%, transparent);
+    }
+    .nav{
+      display:flex; align-items:center; justify-content:space-between; gap:16px; height:64px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px; text-decoration:none;
+      font-weight:800; letter-spacing:.2px;
+    }
+    .brand .dot{
+      width:12px; height:12px; border-radius:50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow:0 0 0 4px var(--ring);
+    }
+    nav ul{list-style:none; padding:0; margin:0; display:flex; gap:18px}
+    nav a{padding:8px 12px; border-radius:10px; text-decoration:none; color:var(--text)}
+    nav a:hover, nav a:focus{outline:none; background:color-mix(in oklab, var(--text) 10%, transparent)}
+
+    .menu-btn{display:none; border:1px solid color-mix(in oklab, var(--text) 14%, transparent); background:transparent; color:var(--text); border-radius:10px; padding:8px 10px}
+    @media (max-width:860px){
+      nav{display:none}
+      nav.open{display:block; position:absolute; top:64px; left:0; right:0; background:var(--panel); padding:12px 0; border-bottom:1px solid color-mix(in oklab, var(--text) 12%, transparent)}
+      nav ul{flex-direction:column; align-items:center}
+      .menu-btn{display:inline-flex; align-items:center; gap:8px}
+    }
+
+    .hero{
+      display:grid; grid-template-columns:1.2fr 1fr; gap:28px; align-items:center;
+      padding:60px 0 30px;
+    }
+    @media (max-width:920px){ .hero{grid-template-columns:1fr; padding:30px 0} }
+    .card{
+      background:var(--panel); border:1px solid color-mix(in oklab, var(--text) 10%, transparent);
+      border-radius:var(--radius); box-shadow:var(--shadow);
+    }
+    .hero .intro{padding:28px}
+    .kicker{font-weight:600; color:var(--muted); text-transform:uppercase; letter-spacing:.12em; font-size:.8rem}
+    h1{font-size: clamp(28px, 4.2vw, 44px); line-height:1.15; margin:.25em 0 .35em}
+    .tagline{font-size:1.05rem; color:var(--muted)}
+    .cta{display:flex; flex-wrap:wrap; gap:12px; margin-top:18px}
+    .btn{
+      display:inline-flex; align-items:center; gap:10px; border:1px solid transparent; text-decoration:none;
+      padding:12px 14px; border-radius:12px; font-weight:600; cursor:pointer; user-select:none;
+      transition:transform .05s ease;
+    }
+    .btn:active{transform:translateY(1px)}
+    .btn.primary{background:linear-gradient(135deg, var(--accent), var(--accent-2)); color:#001018}
+    .btn.ghost{border-color:color-mix(in oklab, var(--text) 14%, transparent)}
+    .btn svg{width:18px; height:18px}
+
+    .photo{
+      aspect-ratio:1/1; overflow:hidden; border-radius:20px; margin:6px; background:#0002;
+      display:grid; place-items:center; position:relative;
+    }
+    .photo img{width:100%; height:100%; object-fit:cover}
+    .chip-row{display:flex; flex-wrap:wrap; gap:8px; margin-top:14px}
+    .chip{font-size:.85rem; padding:6px 10px; border-radius:999px; background:color-mix(in oklab, var(--text) 8%, transparent); border:1px solid color-mix(in oklab, var(--text) 10%, transparent)}
+
+    section{padding:34px 0}
+    section .head{display:flex; align-items:end; justify-content:space-between; gap:10px; margin-bottom:16px}
+    h2{margin:0; font-size: clamp(22px, 3vw, 30px)}
+    .sub{color:var(--muted); font-size:.95rem}
+
+    .grid{display:grid; gap:16px}
+    .grid.cols-2{grid-template-columns:1fr 1fr}
+    .grid.cols-3{grid-template-columns:repeat(3, 1fr)}
+    @media (max-width:960px){ .grid.cols-3{grid-template-columns:1fr 1fr} }
+    @media (max-width:700px){ .grid.cols-2, .grid.cols-3{grid-template-columns:1fr} }
+
+    .panel{padding:20px; border-radius:var(--radius); background:var(--panel); border:1px solid color-mix(in oklab, var(--text) 10%, transparent)}
+    .panel h3{margin:0 0 6px}
+    .panel p{margin:.25em 0}
+
+    .timeline{display:grid; gap:14px}
+    .edu-item{display:grid; grid-template-columns:auto 1fr; gap:12px; align-items:start}
+    .dotline{width:10px; height:10px; border-radius:50%; margin-top:8px;
+      background:linear-gradient(135deg, var(--accent), var(--accent-2)); box-shadow:0 0 0 4px var(--ring)}
+    .edu-body small{color:var(--muted)}
+
+    .tags{display:flex; flex-wrap:wrap; gap:6px; margin-top:8px}
+    .tag{font-size:.78rem; padding:4px 8px; border-radius:999px; background:color-mix(in oklab, var(--text) 8%, transparent); border:1px solid color-mix(in oklab, var(--text) 10%, transparent)}
+    .panel a.inline{display:inline-flex; align-items:center; gap:8px; text-decoration:none; font-weight:600}
+    .panel a.inline:hover{text-decoration:underline}
+
+    form .row{display:grid; gap:12px; grid-template-columns:1fr 1fr}
+    form .row > * {min-width:0}
+    @media (max-width:700px){ form .row{grid-template-columns:1fr} }
+    input, textarea{
+      width:100%; padding:12px 14px; border-radius:12px; background:transparent; color:var(--text);
+      border:1px solid color-mix(in oklab, var(--text) 16%, transparent);
+      outline:none;
+    }
+    input:focus, textarea:focus{box-shadow:0 0 0 4px var(--ring); border-color:transparent}
+    textarea{min-height:120px; resize:vertical}
+
+    .socials{display:flex; gap:10px; flex-wrap:wrap}
+    .icon-btn{display:inline-flex; align-items:center; gap:8px; padding:10px 12px; border-radius:12px; text-decoration:none; border:1px solid color-mix(in oklab, var(--text) 12%, transparent)}
+    .icon-btn svg{width:18px; height:18px}
+
+    footer{padding:28px 0; color:var(--muted); font-size:.95rem}
+    .top-btn{
+      position:fixed; right:18px; bottom:18px; z-index:999; display:none;
+      border:0; border-radius:999px; padding:12px; background:linear-gradient(135deg, var(--accent), var(--accent-2)); color:#001018; box-shadow:var(--shadow); cursor:pointer;
+    }
+    .top-btn.show{display:inline-flex}
+    .theme-toggle{border:1px solid color-mix(in oklab, var(--text) 14%, transparent); background:transparent; color:var(--text); border-radius:12px; padding:10px 12px}
+    .sr-only{position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0}
+    @media (prefers-reduced-motion: reduce){
+      *{scroll-behavior:auto; transition:none!important; animation:none!important}
+    }
+  </style>
+
+  <!-- Schema.org Person -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "S M Mahidur Rahman",
+    "jobTitle": "Student",
+    "description": "Personal portfolio website.",
+    "image": "images/profile.jpg",
+    "url": "",
+    "email": "mailto:your.email@example.com",
+    "sameAs": [
+      "https://github.com/YOUR_GITHUB",
+      "https://www.linkedin.com/in/YOUR_LINKEDIN"
+    ]
+  }
+  </script>
+</head>
+<body>
+  <a class="sr-only" href="#main">Skip to content</a>
+  <header>
+    <div class="wrap nav">
+      <a class="brand" href="#top" aria-label="Home">
+        <span class="dot" aria-hidden="true"></span>
+        <span>S M Mahidur Rahman</span>
+      </a>
+      <button class="menu-btn" id="menuBtn" aria-controls="siteNav" aria-expanded="false">
+        <span>Menu</span>
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+      </button>
+      <nav id="siteNav" aria-label="Primary">
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#education">Education</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#hobbies">Hobbies</a></li>
+          <li><a href="#certs">Certifications</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <button class="theme-toggle" id="themeBtn" aria-label="Toggle dark mode">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M21 12a9 9 0 1 1-9-9 7 7 0 0 0 9 9z"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ====== HERO ====== -->
+    <div class="wrap">
+      <section class="hero" id="top" aria-labelledby="hero-title">
+        <div class="card intro">
+          <div class="kicker">Hello! I'm</div>
+          <h1 id="hero-title">S M Mahidur Rahman</h1>
+          <p class="tagline">Student • Portfolio (edit this line to your field)</p>
+
+          <div class="chip-row" aria-label="Highlights">
+            <span class="chip">Communication</span>
+            <span class="chip">Teamwork</span>
+            <span class="chip">Problem Solving</span>
+          </div>
+
+          <div class="cta">
+            <a class="btn primary" href="resume.pdf" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M5 20h14v-2H5m7-14v8l3-3 1.41 1.41L12 18.83l-4.41-4.42L9 11l3 3V4h0z"/></svg>
+              Resume
+            </a>
+            <a class="btn ghost" href="#contact">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20 4H4a2 2 0 0 0-2 2v.67l10 6.25L22 6.67V6a2 2 0 0 0-2-2zm0 6.75-8 5-8-5V18a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2z"/></svg>
+              Contact
+            </a>
+          </div>
+        </div>
+
+        <div class="photo card" aria-label="Profile photo">
+          <img src="images/profile.jpg" alt="Portrait of S M Mahidur Rahman" />
+        </div>
+      </section>
+    </div>
+
+    <!-- ====== ABOUT ====== -->
+    <section id="about" aria-labelledby="about-head">
+      <div class="wrap">
+        <div class="head">
+          <h2 id="about-head">About me</h2>
+          <div class="sub">A short intro</div>
+        </div>
+        <div class="panel">
+          <p>
+            Hi, I'm S M Mahidur Rahman. This is a quick starter portfolio. Replace this paragraph with a brief
+            introduction—who you are, what you’re studying/working on, and what you’re looking for.
+          </p>
+          <p>
+            Add a second paragraph with interests or values, e.g., “I like solving real-world problems, learning
+            new tools fast, and collaborating on meaningful projects.”
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== EDUCATION ====== -->
+    <section id="education" aria-labelledby="edu-head">
+      <div class="wrap">
+        <div class="head">
+          <h2 id="edu-head">Education</h2>
+          <div class="sub">Academic journey</div>
+        </div>
+        <div class="panel timeline">
+          <div class="edu-item">
+            <div class="dotline" aria-hidden="true"></div>
+            <div class="edu-body">
+              <h3>Degree / Program — University Name</h3>
+              <small>Year–Year (or “Present”)</small>
+              <p>Highlights: relevant coursework, honors, activities.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== SKILLS ====== -->
+    <section id="skills" aria-labelledby="skills-head">
+      <div class="wrap">
+        <div class="head">
+          <h2 id="skills-head">Skills</h2>
+          <div class="sub">Tools & strengths</div>
+        </div>
+        <div class="grid cols-3">
+          <div class="panel">
+            <h3>Languages</h3>
+            <p>English, Bengali (edit this list)</p>
+          </div>
+          <div class="panel">
+            <h3>Tools</h3>
+            <p>MS Office, Google Docs, Canva (examples—edit)</p>
+          </div>
+          <div class="panel">
+            <h3>Domains</h3>
+            <p>Customer service, content, or your field</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== PROJECTS ====== -->
+    <section id="projects" aria-labelledby="proj-head">
+      <div class="wrap">
+        <div class="head">
+          <h2 id="proj-head">Projects</h2>
+          <div class="sub">Selected work</div>
+        </div>
+        <div class="grid cols-3">
+          <article class="panel">
+            <h3>Project Title</h3>
+            <p>1–2 line summary of what you built and why.</p>
+            <div class="tags">
+              <span class="tag">Tag</span><span class="tag">Tag</span><span class="tag">Tag</span>
+            </div>
+            <p><a class="inline" href="#" target="_blank" rel="noopener">View more →</a></p>
+          </article>
+          <article class="panel">
+            <h3>Another Project</h3>
+            <p>Brief description. Replace with your own details.</p>
+            <div class="tags">
+              <span class="tag">Tag</span><span class="tag">Tag</span>
+            </div>
+            <p><a class="inline" href="#" target="_blank" rel="noopener">Demo/Repo →</a></p>
+          </article>
+          <article class="panel">
+            <h3>Activity / Volunteer Work</h3>
+            <p>Optional: community work or achievements.</p>
+            <div class="tags">
+              <span class="tag">Community</span>
+            </div>
+            <p><a class="inline" href="#" target="_blank" rel="noopener">Learn more →</a></p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== HOBBIES ====== -->
+    <section id="hobbies" aria-labelledby="hobby-head">
+      <div class="wrap">
+        <div class="head">
+          <h2 id="hobby-head">Hobbies & Interests</h2>
+          <div class="sub">Life beyond work</div>
+        </div>
+        <div class="grid cols-3">
+          <div class="panel"><h3>Reading</h3><p>Books that inspire me.</p></div>
+          <div class="panel"><h3>Music</h3><p>Listening and discovering new artists.</p></div>
+          <div class="panel"><h3>Sports / Fitness</h3><p>Keep active and healthy.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== CERTIFICATIONS ====== -->
+    <section id="certs" aria-labelledby="certs-head">
+      <div class="wrap">
+        <div class="head">
+          <h2 id="certs-head">Certifications</h2>
+          <div class="sub">Credentials</div>
+        </div>
+        <div class="grid cols-2">
+          <div class="panel"><h3>Certificate Name</h3><p>Issuer • Year</p></div>
+          <div class="panel"><h3>Certificate Name</h3><p>Issuer • Year</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== CONTACT ====== -->
+    <section id="contact" aria-labelledby="contact-head">
+      <div class="wrap">
+        <div class="head">
+          <h2 id="contact-head">Contact</h2>
+          <div class="sub">Let’s connect</div>
+        </div>
+        <div class="grid cols-2">
+          <div class="panel">
+            <form id="contactForm" onsubmit="return sendMailto(event)">
+              <div class="row">
+                <div>
+                  <label for="name">Name</label>
+                  <input id="name" name="name" autocomplete="name" placeholder="Your name" required />
+                </div>
+                <div>
+                  <label for="email">Email</label>
+                  <input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required />
+                </div>
+              </div>
+              <div style="margin-top:12px">
+                <label for="msg">Message</label>
+                <textarea id="msg" name="message" placeholder="Say hi!" required></textarea>
+              </div>
+              <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap">
+                <button class="btn primary" type="submit">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="m2 21 21-9L2 3v7l15 2-15 2z"/></svg>
+                  Send
+                </button>
+                <a class="btn ghost" href="mailto:your.email@example.com">Email directly</a>
+              </div>
+              <small class="sub">This form opens your email app with a pre‑filled message (no server needed).</small>
+            </form>
+          </div>
+
+          <div class="panel">
+            <h3>Social</h3>
+            <p class="sub">Connect with me</p>
+            <div class="socials">
+              <a class="icon-btn" href="https://github.com/YOUR_GITHUB" target="_blank" rel="noopener" aria-label="GitHub">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.61-3.37-1.19-3.37-1.19-.45-1.14-1.11-1.44-1.11-1.44-.91-.63.07-.62.07-.62 1 .07 1.52 1.03 1.52 1.03.9 1.53 2.36 1.09 2.94.83.09-.66.35-1.1.63-1.35-2.22-.26-4.55-1.11-4.55-4.95a3.9 3.9 0 0 1 1.04-2.71 3.63 3.63 0 0 1 .1-2.67s.84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.9-1.29 2.74-1.02 2.74-1.02.37.86.4 1.84.1 2.71a3.9 3.9 0 0 1 1.03 2.71c0 3.85-2.33 4.68-4.56 4.93.36.3.67.89.67 1.8v2.66c0 .26.18.57.68.47A10 10 0 0 0 12 2z"/></svg>
+                GitHub
+              </a>
+              <a class="icon-btn" href="https://www.linkedin.com/in/YOUR_LINKEDIN" target="_blank" rel="noopener" aria-label="LinkedIn">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.94 6.5A2.44 2.44 0 1 1 4.5 4.06 2.44 2.44 0 0 1 6.94 6.5zM4.75 8.75h4.34v10.5H4.75zM13 8.75h4.16v1.53h.06A4.56 4.56 0 0 1 22 14.98v4.27h-4.34v-3.78c0-.9-.02-2.06-1.26-2.06s-1.45.98-1.45 2v3.84H10.6V8.75H13z"/></svg>
+                LinkedIn
+              </a>
+              <a class="icon-btn" href="#" target="_blank" rel="noopener" aria-label="Twitter">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M17.2 3H20l-6.5 7.43L21 21h-6.55l-5.12-6-5.87 6H1.7l7-7.49L3 3h6.65l4.63 5.38zM15.28 19h1.82L8.8 5H6.87z"/></svg>
+                X/Twitter
+              </a>
+              <a class="icon-btn" href="#" target="_blank" rel="noopener" aria-label="Instagram">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3zm5 3.5A5.5 5.5 0 1 1 6.5 13 5.5 5.5 0 0 1 12 7.5m0 2A3.5 3.5 0 1 0 15.5 13 3.5 3.5 0 0 0 12 9.5M18 6.3a1 1 0 1 1-1 1 1 1 0 0 1 1-1"/></svg>
+                Instagram
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="wrap">
+      <footer>
+        <div>© <span id="year"></span> S M Mahidur Rahman. All rights reserved.</div>
+      </footer>
+    </div>
+  </main>
+
+  <button id="toTop" class="top-btn" aria-label="Back to top">
+    <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M12 2 3 11h6v9h6v-9h6z"/></svg>
+  </button>
+
+  <script>
+    // Mobile menu
+    const menuBtn = document.getElementById('menuBtn');
+    const nav = document.getElementById('siteNav');
+    menuBtn?.addEventListener('click', () => {
+      const open = nav.classList.toggle('open');
+      menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+
+    // Back-to-top visibility
+    const toTop = document.getElementById('toTop');
+    const toggleTop = () => {
+      if (window.scrollY > 500) toTop.classList.add('show');
+      else toTop.classList.remove('show');
+    };
+    document.addEventListener('scroll', toggleTop);
+    toTop?.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Theme toggle (persisted)
+    const themeBtn = document.getElementById('themeBtn');
+    const applyTheme = t => document.documentElement.dataset.theme = t;
+    const saved = localStorage.getItem('theme');
+    if (saved) applyTheme(saved);
+    themeBtn?.addEventListener('click', () => {
+      const next = document.documentElement.dataset.theme === 'light' ? 'dark' : 'light';
+      applyTheme(next);
+      localStorage.setItem('theme', next);
+    });
+
+    // Observe theme to update meta color
+    const observer = new MutationObserver(() => {
+      if (document.documentElement.dataset.theme === 'light'){
+        document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff');
+      } else {
+        document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0f172a');
+      }
+    });
+    observer.observe(document.documentElement, {attributes:true, attributeFilter:['data-theme']});
+
+    // Mailto contact handler (no server required)
+    function sendMailto(e){
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const msg = document.getElementById('msg').value.trim();
+      if(!name || !email || !msg) return false;
+      const to = 'your.email@example.com'; // <-- change this to your real email
+      const subject = encodeURIComponent(`Portfolio message from ${name}`);
+      const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${msg}`);
+      window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
+      return false;
+    }
+  </script>
+
+  <!-- Optional: Light theme styles via data-theme -->
+  <style>
+    :root[data-theme="light"]{
+      --bg:#f8fafc; --panel:#ffffff; --muted:#475569; --text:#0f172a; --shadow:0 8px 24px rgba(15,23,42,0.08);
+    }
+  </style>
+</body>
+</html>
