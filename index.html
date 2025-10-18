@@ -19,7 +19,7 @@
 
   <!-- Font -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
 
   <style>
     :root{
@@ -51,12 +51,13 @@
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
     body{
-      margin:0; font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      margin:0; font-family:'Poppins', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       background: radial-gradient(1000px 600px at 10% -10%, rgba(167,139,250,0.08), transparent 60%),
                   radial-gradient(800px 500px at 90% 10%, rgba(34,211,238,0.08), transparent 60%),
                   var(--bg);
       color:var(--text);
       line-height:1.6;
+      font-weight:400;
     }
     a{color:inherit}
     img{max-width:100%; height:auto; display:block}
@@ -73,7 +74,7 @@
     }
     .brand{
       display:flex; align-items:center; gap:10px; text-decoration:none;
-      font-weight:800; letter-spacing:.2px;
+      font-weight:700; letter-spacing:.3px; font-size:1.1rem;
     }
     .brand .dot{
       width:12px; height:12px; border-radius:50%;
@@ -102,14 +103,14 @@
       border-radius:var(--radius); box-shadow:var(--shadow);
     }
     .hero .intro{padding:28px}
-    .kicker{font-weight:600; color:var(--muted); text-transform:uppercase; letter-spacing:.12em; font-size:.8rem}
-    h1{font-size: clamp(28px, 4.2vw, 44px); line-height:1.15; margin:.25em 0 .35em}
-    .tagline{font-size:1.05rem; color:var(--muted)}
+    .kicker{font-weight:500; color:var(--muted); text-transform:uppercase; letter-spacing:.15em; font-size:.85rem}
+    h1{font-size: clamp(32px, 4.5vw, 48px); line-height:1.1; margin:.25em 0 .35em; font-weight:700; letter-spacing:-.02em}
+    .tagline{font-size:1.1rem; color:var(--muted); font-weight:400; line-height:1.5}
     .cta{display:flex; flex-wrap:wrap; gap:12px; margin-top:18px}
     .btn{
       display:inline-flex; align-items:center; gap:10px; border:1px solid transparent; text-decoration:none;
       padding:12px 14px; border-radius:12px; font-weight:600; cursor:pointer; user-select:none;
-      transition:transform .05s ease;
+      transition:transform .05s ease; font-family:'Poppins', sans-serif;
     }
     .btn:active{transform:translateY(1px)}
     .btn.primary{background:linear-gradient(135deg, var(--accent), var(--accent-2)); color:#001018}
@@ -122,12 +123,12 @@
     }
     .photo img{width:100%; height:100%; object-fit:cover}
     .chip-row{display:flex; flex-wrap:wrap; gap:8px; margin-top:14px}
-    .chip{font-size:.85rem; padding:6px 10px; border-radius:999px; background:color-mix(in oklab, var(--text) 8%, transparent); border:1px solid color-mix(in oklab, var(--text) 10%, transparent)}
+    .chip{font-size:.85rem; padding:6px 10px; border-radius:999px; background:color-mix(in oklab, var(--text) 8%, transparent); border:1px solid color-mix(in oklab, var(--text) 10%, transparent); font-weight:500}
 
     section{padding:34px 0}
     section .head{display:flex; align-items:end; justify-content:space-between; gap:10px; margin-bottom:16px}
-    h2{margin:0; font-size: clamp(22px, 3vw, 30px)}
-    .sub{color:var(--muted); font-size:.95rem}
+    h2{margin:0; font-size: clamp(24px, 3.2vw, 32px); font-weight:600; letter-spacing:-.01em}
+    .sub{color:var(--muted); font-size:.95rem; font-weight:400}
 
     .grid{display:grid; gap:16px}
     .grid.cols-2{grid-template-columns:1fr 1fr}
@@ -136,8 +137,8 @@
     @media (max-width:700px){ .grid.cols-2, .grid.cols-3{grid-template-columns:1fr} }
 
     .panel{padding:20px; border-radius:var(--radius); background:var(--panel); border:1px solid color-mix(in oklab, var(--text) 10%, transparent)}
-    .panel h3{margin:0 0 6px}
-    .panel p{margin:.25em 0}
+    .panel h3{margin:0 0 8px; font-weight:600; font-size:1.1rem}
+    .panel p{margin:.25em 0; font-weight:400; line-height:1.6}
 
     .timeline{display:grid; gap:14px}
     .edu-item{display:grid; grid-template-columns:auto 1fr; gap:12px; align-items:start}
@@ -146,7 +147,7 @@
     .edu-body small{color:var(--muted)}
 
     .tags{display:flex; flex-wrap:wrap; gap:6px; margin-top:8px}
-    .tag{font-size:.78rem; padding:4px 8px; border-radius:999px; background:color-mix(in oklab, var(--text) 8%, transparent); border:1px solid color-mix(in oklab, var(--text) 10%, transparent)}
+    .tag{font-size:.78rem; padding:4px 8px; border-radius:999px; background:color-mix(in oklab, var(--text) 8%, transparent); border:1px solid color-mix(in oklab, var(--text) 10%, transparent); font-weight:500}
     .panel a.inline{display:inline-flex; align-items:center; gap:8px; text-decoration:none; font-weight:600}
     .panel a.inline:hover{text-decoration:underline}
 
