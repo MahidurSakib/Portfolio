@@ -34,21 +34,19 @@
       --shadow: 0 10px 30px rgba(2,8,23,0.6);
       --maxw: 1100px;
     }
-    @media (prefers-color-scheme: light){
-      :root:not([data-theme]){
-        --bg: #f8fafc;
-        --panel: #ffffff;
-        --muted: #475569;
-        --text: #0f172a;
-        --shadow: 0 8px 24px rgba(15,23,42,0.08);
-      }
-    }
     :root[data-theme="dark"]{
       --bg: #0a0e1a;
       --panel: #0f1419;
       --muted: #94a3b8;
       --text: #e2e8f0;
       --shadow: 0 10px 30px rgba(2,8,23,0.6);
+    }
+    :root[data-theme="light"]{
+        --bg: #f8fafc;
+        --panel: #ffffff;
+        --muted: #475569;
+        --text: #0f172a;
+        --shadow: 0 8px 24px rgba(15,23,42,0.08);
     }
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
@@ -462,6 +460,9 @@
   </button>
 
   <script>
+    // Apply dark mode immediately to prevent flash
+    document.documentElement.dataset.theme = 'dark';
+    
     // Mobile menu
     const menuBtn = document.getElementById('menuBtn');
     const nav = document.getElementById('siteNav');
@@ -497,12 +498,12 @@
       }
     };
     
-    // Set default theme to dark if no saved preference
+    // Check for saved preference and apply it
     const saved = localStorage.getItem('theme');
     if (saved) {
       applyTheme(saved);
     } else {
-      // Default to dark mode
+      // Keep dark mode as default (already applied above)
       applyTheme('dark');
     }
     
@@ -538,11 +539,5 @@
     }
   </script>
 
-  <!-- Optional: Light theme styles via data-theme -->
-  <style>
-    :root[data-theme="light"]{
-      --bg:#f8fafc; --panel:#ffffff; --muted:#475569; --text:#0f172a; --shadow:0 8px 24px rgba(15,23,42,0.08);
-    }
-  </style>
 </body>
 </html>
