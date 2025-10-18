@@ -498,12 +498,12 @@
       }
     };
     
-    // Check for saved preference and apply it
+    // Set default theme to dark if no saved preference
     const saved = localStorage.getItem('theme');
     if (saved) {
       applyTheme(saved);
     } else {
-      // Keep dark mode as default (already applied above)
+      // Default to dark mode
       applyTheme('dark');
     }
     
