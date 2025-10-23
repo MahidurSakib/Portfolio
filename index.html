@@ -415,16 +415,9 @@
               <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap">
                 <button class="btn primary" type="submit">
                   <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="m2 21 21-9L2 3v7l15 2-15 2z"/></svg>
-                  Send Message
+                  Send
                 </button>
-                <a class="btn ghost" href="mailto:mahidursakib@gmail.com" onclick="copyEmailToClipboard(event)">
-                  <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20 4H4a2 2 0 0 0-2 2v.67l10 6.25L22 6.67V6a2 2 0 0 0-2-2zm0 6.75-8 5-8-5V18a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2z"/></svg>
-                  Email Directly
-                </a>
-                <button class="btn ghost" onclick="copyEmailToClipboard(event)" style="cursor:pointer">
-                  <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M16 1H4a2 2 0 0 0-2 2v14h2V3h12V1zm3 4H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm0 16H8V7h11v14z"/></svg>
-                  Copy Email
-                </button>
+                <a class="btn ghost" href="mailto:mahidursakib@gmail.com">Email directly</a>
               </div>
             </form>
           </div>
@@ -527,137 +520,18 @@
     });
     observer.observe(document.documentElement, {attributes:true, attributeFilter:['data-theme']});
 
-    // Enhanced mailto contact handler with better error handling
+    // Mailto contact handler (no server required)
     function sendMailto(e){
       e.preventDefault();
       const name = document.getElementById('name').value.trim();
       const email = document.getElementById('email').value.trim();
       const msg = document.getElementById('msg').value.trim();
-      
-      // Clear any previous error messages
-      clearErrorMessages();
-      
-      // Validate form fields
-      if(!name || !email || !msg) {
-        showError('Please fill in all fields before sending.');
-        return false;
-      }
-      
-      // Basic email validation
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if(!emailRegex.test(email)) {
-        showError('Please enter a valid email address.');
-        return false;
-      }
-      
-      try {
-        const to = 'mahidursakib@gmail.com';
-        const subject = encodeURIComponent(`Portfolio message from ${name}`);
-        const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${msg}`);
-        const mailtoLink = `mailto:${to}?subject=${subject}&body=${body}`;
-        
-        // Try to open mailto link
-        window.location.href = mailtoLink;
-        
-        // Show success message
-        showSuccess('Opening your email client... If it doesn\'t open, please email me directly at mahidursakib@gmail.com');
-        
-        // Clear form after successful submission
-        setTimeout(() => {
-          document.getElementById('contactForm').reset();
-        }, 2000);
-        
-      } catch(error) {
-        showError('Unable to open email client. Please email me directly at mahidursakib@gmail.com');
-      }
-      
+      if(!name || !email || !msg) return false;
+      const to = 'mahidursakib@gmail.com';
+      const subject = encodeURIComponent(`Portfolio message from ${name}`);
+      const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${msg}`);
+      window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
       return false;
-    }
-    
-    // Helper functions for better UX
-    function showError(message) {
-      const errorDiv = document.createElement('div');
-      errorDiv.className = 'error-message';
-      errorDiv.style.cssText = 'color: #ef4444; background: rgba(239,68,68,0.1); padding: 8px 12px; border-radius: 8px; margin-top: 8px; font-size: 0.9rem; border: 1px solid rgba(239,68,68,0.2);';
-      errorDiv.textContent = message;
-      
-      const form = document.getElementById('contactForm');
-      form.appendChild(errorDiv);
-      
-      // Auto-remove after 5 seconds
-      setTimeout(() => {
-        if(errorDiv.parentNode) {
-          errorDiv.parentNode.removeChild(errorDiv);
-        }
-      }, 5000);
-    }
-    
-    function showSuccess(message) {
-      const successDiv = document.createElement('div');
-      successDiv.className = 'success-message';
-      successDiv.style.cssText = 'color: #22c55e; background: rgba(34,197,94,0.1); padding: 8px 12px; border-radius: 8px; margin-top: 8px; font-size: 0.9rem; border: 1px solid rgba(34,197,94,0.2);';
-      successDiv.textContent = message;
-      
-      const form = document.getElementById('contactForm');
-      form.appendChild(successDiv);
-      
-      // Auto-remove after 8 seconds
-      setTimeout(() => {
-        if(successDiv.parentNode) {
-          successDiv.parentNode.removeChild(successDiv);
-        }
-      }, 8000);
-    }
-    
-    function clearErrorMessages() {
-      const existingErrors = document.querySelectorAll('.error-message, .success-message');
-      existingErrors.forEach(msg => {
-        if(msg.parentNode) {
-          msg.parentNode.removeChild(msg);
-        }
-      });
-    }
-    
-    // Copy email to clipboard function
-    function copyEmailToClipboard(e) {
-      e.preventDefault();
-      const email = 'mahidursakib@gmail.com';
-      
-      if (navigator.clipboard && window.isSecureContext) {
-        // Use modern clipboard API
-        navigator.clipboard.writeText(email).then(() => {
-          showSuccess('Email copied to clipboard! You can now paste it anywhere.');
-        }).catch(() => {
-          fallbackCopyTextToClipboard(email);
-        });
-      } else {
-        // Fallback for older browsers
-        fallbackCopyTextToClipboard(email);
-      }
-    }
-    
-    function fallbackCopyTextToClipboard(text) {
-      const textArea = document.createElement('textarea');
-      textArea.value = text;
-      textArea.style.position = 'fixed';
-      textArea.style.left = '-999999px';
-      textArea.style.top = '-999999px';
-      document.body.appendChild(textArea);
-      textArea.focus();
-      textArea.select();
-      
-      try {
-        const successful = document.execCommand('copy');
-        if (successful) {
-          showSuccess('Email copied to clipboard! You can now paste it anywhere.');
-        } else {
-          showError('Unable to copy email. Please manually copy: mahidursakib@gmail.com');
-        }
-      } catch (err) {
-        showError('Unable to copy email. Please manually copy: mahidursakib@gmail.com');
-      }
-      
-      document.body.removeChild(textArea);
     }
   </script>
 
