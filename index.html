@@ -110,12 +110,17 @@
     .btn{
       display:inline-flex; align-items:center; gap:10px; border:1px solid transparent; text-decoration:none;
       padding:12px 14px; border-radius:12px; font-weight:600; cursor:pointer; user-select:none;
-      transition:transform .05s ease; font-family:'Poppins', sans-serif;
+      transition:all .2s ease; font-family:'Poppins', sans-serif; position:relative; overflow:hidden;
     }
-    .btn:active{transform:translateY(1px)}
-    .btn.primary{background:linear-gradient(135deg, var(--accent), var(--accent-2)); color:#001018}
-    .btn.ghost{border-color:color-mix(in oklab, var(--text) 14%, transparent)}
-    .btn svg{width:18px; height:18px}
+    .btn::before{content:''; position:absolute; top:50%; left:50%; width:0; height:0; border-radius:50%; background:rgba(255,255,255,.2); transform:translate(-50%, -50%); transition:width .4s, height .4s}
+    .btn:hover::before{width:300px; height:300px}
+    .btn:active{transform:translateY(1px) scale(.98)}
+    .btn.primary{background:linear-gradient(135deg, var(--accent), var(--accent-2)); color:#001018; box-shadow:0 4px 12px rgba(34,211,238,.3)}
+    .btn.primary:hover{box-shadow:0 6px 20px rgba(34,211,238,.4); transform:translateY(-2px)}
+    .btn.ghost{border-color:color-mix(in oklab, var(--text) 14%, transparent); transition:all .2s ease}
+    .btn.ghost:hover{background:color-mix(in oklab, var(--text) 8%, transparent); border-color:var(--accent); transform:translateY(-2px)}
+    .btn svg{width:18px; height:18px; position:relative; z-index:1}
+    .btn .btn-text{position:relative; z-index:1}
 
     .photo{
       aspect-ratio:1/1; overflow:hidden; border-radius:20px; margin:6px; background:#0002;
@@ -156,13 +161,27 @@
     form .row{display:grid; gap:12px; grid-template-columns:1fr 1fr}
     form .row > * {min-width:0}
     @media (max-width:700px){ form .row{grid-template-columns:1fr} }
+    form label{display:block; margin-bottom:6px; font-weight:500; font-size:.9rem; color:var(--text)}
     input, textarea{
       width:100%; padding:12px 14px; border-radius:12px; background:transparent; color:var(--text);
       border:1px solid color-mix(in oklab, var(--text) 16%, transparent);
-      outline:none;
+      outline:none; transition:all .2s ease; font-family:inherit;
     }
-    input:focus, textarea:focus{box-shadow:0 0 0 4px var(--ring); border-color:transparent}
+    input:hover, textarea:hover{border-color:color-mix(in oklab, var(--accent) 40%, transparent)}
+    input:focus, textarea:focus{box-shadow:0 0 0 4px var(--ring); border-color:var(--accent); transform:translateY(-1px)}
+    input:valid:not(:placeholder-shown), textarea:valid:not(:placeholder-shown){border-color:color-mix(in oklab, #10b981 60%, transparent)}
+    input:invalid:not(:placeholder-shown), textarea:invalid:not(:placeholder-shown){border-color:#ef4444; animation:shake .3s ease}
+    @keyframes shake{0%,100%{transform:translateX(0)} 25%{transform:translateX(-5px)} 75%{transform:translateX(5px)}}
     textarea{min-height:120px; resize:vertical}
+    .btn:disabled{opacity:.6; cursor:not-allowed; transform:none!important}
+    .btn.loading{position:relative; color:transparent}
+    .btn.loading::after{content:''; position:absolute; width:18px; height:18px; top:50%; left:50%; transform:translate(-50%, -50%); border:2px solid currentColor; border-top-color:transparent; border-radius:50%; animation:spin .6s linear infinite}
+    @keyframes spin{to{transform:translate(-50%, -50%) rotate(360deg)}}
+    .form-message{display:none; padding:12px; border-radius:12px; margin-top:12px; font-size:.9rem; animation:slideDown .3s ease}
+    .form-message.show{display:block}
+    .form-message.success{background:color-mix(in oklab, #10b981 20%, transparent); border:1px solid #10b981; color:#10b981}
+    .form-message.error{background:color-mix(in oklab, #ef4444 20%, transparent); border:1px solid #ef4444; color:#ef4444}
+    @keyframes slideDown{from{opacity:0; transform:translateY(-10px)} to{opacity:1; transform:translateY(0)}}
 
     .socials{display:flex; gap:10px; flex-wrap:wrap}
     .icon-btn{display:inline-flex; align-items:center; gap:8px; padding:10px 12px; border-radius:12px; text-decoration:none; border:1px solid color-mix(in oklab, var(--text) 12%, transparent)}
@@ -409,7 +428,7 @@
         </div>
         <div class="grid cols-2">
           <div class="panel">
-            <form id="contactForm" onsubmit="return sendMailto(event)">
+            <form id="contactForm" novalidate>
               <div class="row">
                 <div>
                   <label for="name">Name</label>
@@ -424,10 +443,11 @@
                 <label for="msg">Message</label>
                 <textarea id="msg" name="message" placeholder="Say hi!" required></textarea>
               </div>
+              <div class="form-message" id="formMessage" role="alert"></div>
               <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap">
-                <button class="btn primary" type="submit">
+                <button class="btn primary" type="submit" id="submitBtn">
                   <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="m2 21 21-9L2 3v7l15 2-15 2z"/></svg>
-                  Send
+                  <span class="btn-text">Send</span>
                 </button>
                 <a class="btn ghost" href="mailto:mahidursakib@gmail.com">Email directly</a>
               </div>
@@ -532,18 +552,105 @@
     });
     observer.observe(document.documentElement, {attributes:true, attributeFilter:['data-theme']});
 
-    // Mailto contact handler (no server required)
-    function sendMailto(e){
-      e.preventDefault();
-      const name = document.getElementById('name').value.trim();
-      const email = document.getElementById('email').value.trim();
-      const msg = document.getElementById('msg').value.trim();
-      if(!name || !email || !msg) return false;
-      const to = 'mahidursakib@gmail.com';
-      const subject = encodeURIComponent(`Portfolio message from ${name}`);
-      const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${msg}`);
-      window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
-      return false;
+    // Enhanced contact form handler with interactive feedback
+    const contactForm = document.getElementById('contactForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const formMessage = document.getElementById('formMessage');
+    
+    if (contactForm) {
+      contactForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        // Get form values
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const msg = document.getElementById('msg').value.trim();
+        
+        // Hide previous messages
+        formMessage.classList.remove('show', 'success', 'error');
+        
+        // Validate form
+        if (!name || !email || !msg) {
+          showMessage('Please fill in all fields.', 'error');
+          return false;
+        }
+        
+        // Email validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+          showMessage('Please enter a valid email address.', 'error');
+          return false;
+        }
+        
+        // Show loading state
+        submitBtn.disabled = true;
+        submitBtn.classList.add('loading');
+        const btnText = submitBtn.querySelector('.btn-text');
+        const originalText = btnText.textContent;
+        btnText.textContent = 'Sending...';
+        
+        // Simulate a brief delay for better UX (optional)
+        await new Promise(resolve => setTimeout(resolve, 500));
+        
+        try {
+          // Prepare mailto link
+          const to = 'mahidursakib@gmail.com';
+          const subject = encodeURIComponent(`Portfolio message from ${name}`);
+          const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${msg}`);
+          
+          // Show success message
+          showMessage('Opening your email client...', 'success');
+          
+          // Open mailto link
+          window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
+          
+          // Reset form after a delay
+          setTimeout(() => {
+            contactForm.reset();
+            formMessage.classList.remove('show');
+          }, 3000);
+          
+        } catch (error) {
+          showMessage('Something went wrong. Please try again or email directly.', 'error');
+        } finally {
+          // Reset button state
+          submitBtn.disabled = false;
+          submitBtn.classList.remove('loading');
+          btnText.textContent = originalText;
+        }
+        
+        return false;
+      });
+      
+      // Helper function to show messages
+      function showMessage(text, type) {
+        formMessage.textContent = text;
+        formMessage.className = `form-message show ${type}`;
+        
+        // Auto-hide error messages after 5 seconds
+        if (type === 'error') {
+          setTimeout(() => {
+            formMessage.classList.remove('show');
+          }, 5000);
+        }
+      }
+      
+      // Real-time validation feedback
+      const inputs = contactForm.querySelectorAll('input, textarea');
+      inputs.forEach(input => {
+        input.addEventListener('blur', function() {
+          if (this.checkValidity()) {
+            this.style.borderColor = '';
+          }
+        });
+        
+        input.addEventListener('input', function() {
+          if (this.checkValidity()) {
+            this.style.borderColor = '';
+            formMessage.classList.remove('show');
+          }
+        });
+      });
     }
   </script>
 
