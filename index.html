@@ -180,6 +180,13 @@
     .cv-project-tags .tag{font-size:.72rem; padding:4px 8px}
     @media (max-width:640px){ .cv-row{grid-template-columns:1fr; gap:4px} }
 
+    /* Certifications single-entry layout */
+    .cert-panel{padding:24px 28px}
+    .cert-head{display:flex; justify-content:space-between; align-items:baseline; gap:12px; margin-bottom:10px}
+    .cert-title{margin:0; font-family:var(--serif); font-weight:700; font-size:1.05rem; color:var(--text)}
+    .cert-year{margin:0; font-weight:700; font-size:1rem; color:var(--text)}
+    .cert-desc{margin:0; padding-left:1em; font-size:.95rem; line-height:1.6; color:var(--text)}
+
     form .row{display:grid; gap:12px; grid-template-columns:1fr 1fr}
     form .row > * {min-width:0}
     @media (max-width:700px){ form .row{grid-template-columns:1fr} }
@@ -330,8 +337,8 @@
           <div class="edu-item">
             <div class="dotline" aria-hidden="true"></div>
             <div class="edu-body">
-              <h3>🎓 B.Sc. in Computer Science, Brac University</h3>
-              <small>2022–2025</small>
+              <h3>🎓 B.Sc. in Computer Science, BRAC University</h3>
+              <small>2022–2026</small>
             </div>
           </div>
           <div class="edu-item">
@@ -460,9 +467,12 @@
           <h2 id="certs-head">Certifications</h2>
           <div class="sub">Credentials</div>
         </div>
-        <div class="grid cols-2">
-          <div class="panel"><h3>Certificate Name</h3><p>Issuer • Year</p></div>
-          <div class="panel"><h3>Certificate Name</h3><p>Issuer • Year</p></div>
+        <div class="panel cert-panel">
+          <div class="cert-head">
+            <h3 class="cert-title">App Development</h3>
+            <span class="cert-year">2023</span>
+          </div>
+          <p class="cert-desc">* Completed structured app development training as an extra-curricular activity.</p>
         </div>
       </div>
     </section>
@@ -497,9 +507,11 @@
                   <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="m2 21 21-9L2 3v7l15 2-15 2z"/></svg>
                   <span class="btn-text">Send</span>
                 </button>
-                <a class="btn ghost" href="mailto:mahidursakib@gmail.com">Email directly</a>
               </div>
             </form>
+            <div style="margin-top:12px">
+              <a class="btn ghost" href="mailto:mahidursakib@gmail.com" target="_blank" rel="noopener">Email directly</a>
+            </div>
           </div>
 
           <div class="panel">
