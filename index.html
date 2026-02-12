@@ -17,9 +17,9 @@
 
   <meta name="theme-color" content="#0c111b" />
 
-  <!-- Font: serif for academic headings, sans for body -->
+  <!-- Font: single font for whole site -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
   <style>
     :root{
@@ -33,8 +33,7 @@
       --radius: 8px;
       --shadow: 0 4px 20px rgba(0,0,0,0.25);
       --maxw: 1160px;
-      --serif: 'Source Serif 4', Georgia, 'Times New Roman', serif;
-      --sans: 'Poppins', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      --font: 'Poppins', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
     }
     :root[data-theme="dark"]{
       --bg: #0c111b;
@@ -53,7 +52,7 @@
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
     body{
-      margin:0; font-family:var(--sans);
+      margin:0; font-family:var(--font);
       background: var(--bg);
       color:var(--text);
       line-height:1.75;
@@ -75,7 +74,7 @@
     }
     .brand{
       display:flex; align-items:center; gap:10px; text-decoration:none;
-      font-family:var(--serif); font-weight:600; letter-spacing:.02em; font-size:1.05rem; color:var(--text);
+      font-family:var(--font); font-weight:600; letter-spacing:.02em; font-size:1.05rem; color:var(--text);
     }
     .brand .dot{
       width:8px; height:8px; border-radius:50%;
@@ -104,13 +103,13 @@
     }
     .hero .intro{padding:32px 36px}
     .kicker{font-weight:500; color:var(--muted); text-transform:uppercase; letter-spacing:.2em; font-size:.8rem}
-    h1{font-family:var(--serif); font-size: clamp(28px, 4vw, 42px); line-height:1.2; margin:.4em 0 .5em; font-weight:700; letter-spacing:-.02em; color:var(--text)}
+    h1{font-family:var(--font); font-size: clamp(28px, 4vw, 42px); line-height:1.2; margin:.4em 0 .5em; font-weight:700; letter-spacing:-.02em; color:var(--text)}
     .tagline{font-size:1rem; color:var(--muted); font-weight:400; line-height:1.65; max-width:32ch}
     .cta{display:flex; flex-wrap:wrap; gap:10px; margin-top:24px}
     .btn{
       display:inline-flex; align-items:center; gap:8px; border:1px solid transparent; text-decoration:none;
       padding:10px 18px; border-radius:var(--radius); font-weight:600; font-size:.9rem; cursor:pointer; user-select:none;
-      transition:all .2s ease; font-family:var(--sans); position:relative; overflow:hidden;
+      transition:all .2s ease; font-family:var(--font); position:relative; overflow:hidden;
     }
     .btn:active{transform:translateY(1px)}
     .btn.primary{background:var(--accent); color:#fff; border-color:var(--accent)}
@@ -130,7 +129,7 @@
 
     section{padding:48px 0}
     section .head{display:flex; align-items:flex-end; justify-content:space-between; gap:12px; margin-bottom:24px; padding-bottom:12px; border-bottom:2px solid var(--accent)}
-    h2{margin:0; font-family:var(--serif); font-size: clamp(22px, 2.8vw, 28px); font-weight:700; letter-spacing:.04em; color:var(--text); text-transform:uppercase}
+    h2{margin:0; font-family:var(--font); font-size: clamp(22px, 2.8vw, 28px); font-weight:700; letter-spacing:.04em; color:var(--text); text-transform:uppercase}
     .sub{color:var(--muted); font-size:.9rem; font-weight:400}
 
     .grid{display:grid; gap:20px}
@@ -141,7 +140,7 @@
 
     .panel{padding:24px 28px; border-radius:var(--radius); background:var(--panel); border:1px solid color-mix(in oklab, var(--text) 8%, transparent); box-shadow:var(--shadow)}
     #about .panel{background:var(--panel); border:1px solid color-mix(in oklab, var(--accent) 25%, transparent)}
-    .panel h3{margin:0 0 10px; font-family:var(--serif); font-weight:600; font-size:1.05rem; color:var(--text)}
+    .panel h3{margin:0 0 10px; font-family:var(--font); font-weight:600; font-size:1.05rem; color:var(--text)}
     .panel p{margin:.4em 0; font-weight:400; line-height:1.75}
     #about .panel p{font-size:1rem; line-height:1.8; font-weight:400; color:var(--text); text-align:justify; margin:0}
 
@@ -149,7 +148,7 @@
     .edu-item{display:grid; grid-template-columns:auto 1fr; gap:14px; align-items:start}
     .dotline{width:8px; height:8px; border-radius:50%; margin-top:10px; background:var(--accent)}
     .edu-body small{color:var(--muted); font-size:.9rem}
-    .edu-body h3{font-family:var(--serif); font-size:1rem; font-weight:600; margin:0 0 4px}
+    .edu-body h3{font-family:var(--font); font-size:1rem; font-weight:600; margin:0 0 4px}
 
     .tags{display:flex; flex-wrap:wrap; gap:6px; margin-top:8px}
     .tag{font-size:.75rem; padding:4px 10px; border-radius:4px; background:color-mix(in oklab, var(--text) 6%, transparent); border:1px solid color-mix(in oklab, var(--text) 12%, transparent); font-weight:500; color:var(--muted)}
@@ -171,7 +170,7 @@
     .cv-project{border-bottom:1px solid color-mix(in oklab, var(--text) 8%, transparent); padding-bottom:24px; margin-bottom:24px}
     .cv-project:last-child{border-bottom:none; margin-bottom:0; padding-bottom:0}
     .cv-project-head{display:flex; flex-wrap:wrap; align-items:baseline; justify-content:space-between; gap:8px; margin-bottom:8px}
-    .cv-project-title{margin:0; font-family:var(--serif); font-weight:600; font-size:1.05rem; color:var(--text)}
+    .cv-project-title{margin:0; font-family:var(--font); font-weight:600; font-size:1.05rem; color:var(--text)}
     .cv-project-meta{font-size:.85rem; color:var(--muted); font-weight:500}
     .cv-project-desc{margin:0 0 10px; font-size:.95rem; line-height:1.65; color:var(--text)}
     .cv-bullets{margin:0 0 12px; padding-left:1.25em; list-style:disc; font-size:.9rem; line-height:1.6; color:var(--text)}
@@ -180,11 +179,17 @@
     .cv-project-tags .tag{font-size:.72rem; padding:4px 8px}
     @media (max-width:640px){ .cv-row{grid-template-columns:1fr; gap:4px} }
 
+    /* Skills: bold category + comma-separated items, same color */
+    .skills-panel{padding:24px 28px}
+    .skills-line{margin:0 0 .65em; font-size:.95rem; line-height:1.55; color:var(--text)}
+    .skills-line:last-child{margin-bottom:0}
+    .skills-cat{font-weight:700; color:var(--text)}
+
     /* Certifications: text block then certificate below */
     .cert-panel{padding:24px 28px; margin-bottom:20px}
     .cert-head{display:flex; justify-content:space-between; align-items:baseline; gap:12px; margin-bottom:10px}
-    .cert-title{margin:0; font-family:var(--serif); font-weight:700; font-size:1.05rem; color:var(--text)}
-    .cert-year{margin:0; font-family:var(--sans); font-weight:700; font-size:1rem; color:var(--text)}
+    .cert-title{margin:0; font-family:var(--font); font-weight:700; font-size:1.05rem; color:var(--accent)}
+    .cert-year{margin:0; font-family:var(--font); font-weight:700; font-size:1rem; color:var(--text)}
     .cert-desc{margin:0; font-size:.95rem; line-height:1.6; color:var(--text)}
     .cert-viewer-panel{padding:0; overflow:hidden; margin-top:0; border:1px solid color-mix(in oklab, var(--text) 10%, transparent); cursor:pointer; max-width:520px; margin-left:auto; margin-right:auto}
     .cert-viewer-panel .cert-iframe{display:block; width:100%; height:220px; border:0; background:color-mix(in oklab, var(--text) 5%, transparent); pointer-events:none}
@@ -371,33 +376,22 @@
       </div>
     </section>
 
-    <!-- ====== SKILLS (CV-style) ====== -->
+    <!-- ====== SKILLS ====== -->
     <section id="skills" aria-labelledby="skills-head">
       <div class="wrap">
         <div class="head">
           <h2 id="skills-head">Skills</h2>
           <div class="sub">Tools & strengths</div>
         </div>
-        <div class="cv-block">
-          <div class="cv-row">
-            <p class="cv-label">Languages</p>
-            <p class="cv-value">English, Bengali, Chinese</p>
-          </div>
-          <div class="cv-row">
-            <p class="cv-label">Programming</p>
-            <p class="cv-value">Python, C</p>
-          </div>
-          <div class="cv-row">
-            <p class="cv-label">Databases</p>
-            <p class="cv-value">MySQL, MongoDB</p>
-          </div>
-          <div class="cv-row">
-            <p class="cv-label">ML & Deep Learning</p>
-            <ul class="cv-list" style="margin:0">
-              <li>TensorFlow, PyTorch</li>
-              <li>CNNs, RNNs</li>
-            </ul>
-          </div>
+        <div class="panel skills-panel">
+          <p class="skills-line"><span class="skills-cat">Programming Languages:</span> Python, C, JavaScript</p>
+          <p class="skills-line"><span class="skills-cat">ML/DL Frameworks:</span> PyTorch, TensorFlow, scikit-learn, CNNs, Regression Modeling, Multimodal Learning, Attention Mechanisms, Ensemble Methods, Explainable AI</p>
+          <p class="skills-line"><span class="skills-cat">Computer Vision/Image Processing:</span> U-Net, Attention U-Net, Grad-CAM, SHAP, OpenCV, PIL</p>
+          <p class="skills-line"><span class="skills-cat">Libraries:</span> NumPy, Pandas, Matplotlib</p>
+          <p class="skills-line"><span class="skills-cat">Tools:</span> Git, LaTeX, MongoDB Atlas, Postman, Google Colab, Hugging Face</p>
+          <p class="skills-line"><span class="skills-cat">Web Development:</span> Node.js, React.js, Express.js, MySQL, MongoDB, TailwindCSS, HTML</p>
+          <p class="skills-line"><span class="skills-cat">Soft Skills:</span> Mentoring, Team Collaboration, Problem Solving, Time Management</p>
+          <p class="skills-line"><span class="skills-cat">Language Proficiency:</span> Bangla (Native), English (Professional)</p>
         </div>
       </div>
     </section>
@@ -529,11 +523,9 @@
                   <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="m2 21 21-9L2 3v7l15 2-15 2z"/></svg>
                   <span class="btn-text">Send</span>
                 </button>
+                <a class="btn ghost" href="mailto:mahidursakib@gmail.com" id="emailDirectBtn">Email directly</a>
               </div>
             </form>
-            <div style="margin-top:12px">
-              <a class="btn ghost" href="mailto:mahidursakib@gmail.com" target="_blank" rel="noopener">Email directly</a>
-            </div>
           </div>
 
           <div class="panel">
@@ -756,6 +748,15 @@
       certModalClose.addEventListener('click', closeCertModal);
       certModalBackdrop.addEventListener('click', closeCertModal);
       document.addEventListener('keydown', function(e) { if (e.key === 'Escape' && certModal.classList.contains('open')) closeCertModal(); });
+    }
+
+    // Email directly button - open mailto without blank tab
+    const emailDirectBtn = document.getElementById('emailDirectBtn');
+    if (emailDirectBtn) {
+      emailDirectBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        window.location.href = 'mailto:mahidursakib@gmail.com';
+      });
     }
   </script>
 
