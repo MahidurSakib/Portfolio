@@ -181,11 +181,17 @@
     @media (max-width:640px){ .cv-row{grid-template-columns:1fr; gap:4px} }
 
     /* Certifications single-entry layout */
+    .cert-grid{align-items:stretch}
     .cert-panel{padding:24px 28px}
     .cert-head{display:flex; justify-content:space-between; align-items:baseline; gap:12px; margin-bottom:10px}
     .cert-title{margin:0; font-family:var(--serif); font-weight:700; font-size:1.05rem; color:var(--text)}
     .cert-year{margin:0; font-weight:700; font-size:1rem; color:var(--text)}
     .cert-desc{margin:0; padding-left:1em; font-size:.95rem; line-height:1.6; color:var(--text)}
+    .cert-viewer-panel{padding:0; overflow:hidden; display:flex; flex-direction:column; min-height:320px}
+    .cert-iframe{flex:1; width:100%; min-height:320px; border:0; background:color-mix(in oklab, var(--text) 5%, transparent)}
+    .cert-link{display:block; padding:10px 28px; font-size:.9rem; font-weight:600; color:var(--accent); text-decoration:none; border-top:1px solid color-mix(in oklab, var(--text) 10%, transparent)}
+    .cert-link:hover{text-decoration:underline}
+    @media (max-width:700px){ .cert-grid{grid-template-columns:1fr} .cert-viewer-panel{min-height:280px} .cert-iframe{min-height:280px} }
 
     form .row{display:grid; gap:12px; grid-template-columns:1fr 1fr}
     form .row > * {min-width:0}
@@ -467,12 +473,18 @@
           <h2 id="certs-head">Certifications</h2>
           <div class="sub">Credentials</div>
         </div>
-        <div class="panel cert-panel">
-          <div class="cert-head">
-            <h3 class="cert-title">App Development</h3>
-            <span class="cert-year">2023</span>
+        <div class="grid cols-2 cert-grid">
+          <div class="panel cert-panel">
+            <div class="cert-head">
+              <h3 class="cert-title">App Development</h3>
+              <span class="cert-year">2023</span>
+            </div>
+            <p class="cert-desc">* Completed structured app development training as an extra-curricular activity.</p>
           </div>
-          <p class="cert-desc">* Completed structured app development training as an extra-curricular activity.</p>
+          <div class="panel cert-viewer-panel">
+            <iframe class="cert-iframe" src="App Development Certificate.pdf" title="App Development Certificate"></iframe>
+            <a class="cert-link" href="App Development Certificate.pdf" target="_blank" rel="noopener">Open certificate in new tab</a>
+          </div>
         </div>
       </div>
     </section>
