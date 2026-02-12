@@ -181,12 +181,13 @@
 
     /* Research & Projects: title accent, bullets normal, line after each */
     .research-panel{padding:24px 28px}
-    .research-item{margin-bottom:0; padding-bottom:20px; border-bottom:2px solid color-mix(in oklab, var(--text) 15%, transparent)}
+    .research-item{margin-bottom:0; padding-bottom:32px; border-bottom:2px solid color-mix(in oklab, var(--text) 15%, transparent)}
     .research-item:last-child{padding-bottom:0; border-bottom:none}
     .research-panel .research-title{margin:0 0 8px; font-family:var(--font); font-weight:700; font-size:1.05rem; color:var(--accent)}
     .research-bullets{margin:0; padding-left:1.25em; list-style:none}
     .research-bullets li{margin:.4em 0; font-size:.95rem; line-height:1.55; color:var(--text); position:relative}
     .research-bullets li::before{content:'* '; position:absolute; left:-1.25em}
+    .research-desc{margin:0; font-size:.95rem; line-height:1.55; color:var(--text)}
 
     /* Skills: bold category + comma-separated items, same color */
     .skills-panel{padding:24px 28px}
@@ -478,17 +479,26 @@
       </div>
     </section>
 
-    <!-- ====== HOBBIES ====== -->
+    <!-- ====== HOBBIES & INTERESTS ====== -->
     <section id="hobbies" aria-labelledby="hobby-head">
       <div class="wrap">
         <div class="head">
           <h2 id="hobby-head">Hobbies & Interests</h2>
           <div class="sub">Life beyond work</div>
         </div>
-        <div class="grid cols-3">
-          <div class="panel"><h3>Reading</h3><p>Books that inspire me.</p></div>
-          <div class="panel"><h3>Music</h3><p>Listening and discovering new artists.</p></div>
-          <div class="panel"><h3>Sports / Fitness</h3><p>Keep active and healthy.</p></div>
+        <div class="panel research-panel">
+          <article class="research-item">
+            <h3 class="research-title">Reading</h3>
+            <p class="research-desc">Books that inspire me.</p>
+          </article>
+          <article class="research-item">
+            <h3 class="research-title">Music</h3>
+            <p class="research-desc">Listening and discovering new artists.</p>
+          </article>
+          <article class="research-item">
+            <h3 class="research-title">Sports / Fitness</h3>
+            <p class="research-desc">Keep active and healthy.</p>
+          </article>
         </div>
       </div>
     </section>
