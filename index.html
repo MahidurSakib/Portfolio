@@ -203,9 +203,10 @@
     .cert-panel .cert-title{margin:0; font-family:var(--font); font-weight:700; font-size:1.05rem; color:var(--accent)}
     .cert-year{margin:0; font-family:var(--font); font-weight:700; font-size:1rem; color:var(--text)}
     .cert-desc{margin:0; font-size:.95rem; line-height:1.6; color:var(--text)}
-    .cert-viewer-panel{padding:0; overflow:hidden; margin:0; border:1px solid color-mix(in oklab, var(--text) 10%, transparent); cursor:pointer; display:flex; min-height:200px; scrollbar-width:none; position:relative}
+    .cert-viewer-panel{padding:0; overflow:hidden; margin:0; border:1px solid color-mix(in oklab, var(--text) 10%, transparent); cursor:pointer; min-height:200px; scrollbar-width:none}
     .cert-viewer-panel::-webkit-scrollbar{display:none}
-    .cert-viewer-panel .cert-iframe{flex:1; width:calc(100% + 30px); max-width:none; min-height:200px; height:200px; border:0; background:color-mix(in oklab, var(--text) 5%, transparent); pointer-events:none; margin-right:-30px; position:relative}
+    .cert-iframe-wrap{width:100%; height:200px; overflow:hidden; position:relative}
+    .cert-viewer-panel .cert-iframe{display:block; width:calc(100% + 40px); height:200px; min-height:200px; border:0; background:color-mix(in oklab, var(--text) 5%, transparent); pointer-events:none; margin:0; position:absolute; left:0; top:0}
     .cert-modal{position:fixed; inset:0; z-index:2000; background:rgba(0,0,0,.85); display:none; align-items:center; justify-content:center; padding:20px}
     .cert-modal.open{display:flex}
     .cert-modal-backdrop{position:absolute; inset:0}
@@ -213,7 +214,8 @@
     .cert-modal-close{position:absolute; top:8px; right:8px; z-index:2; width:36px; height:36px; border:0; border-radius:var(--radius); background:var(--panel); color:var(--text); cursor:pointer; font-size:1.2rem; line-height:1; box-shadow:var(--shadow)}
     .cert-modal-close:hover{background:color-mix(in oklab, var(--text) 15%, transparent)}
     .cert-modal-close:focus{outline:2px solid var(--accent)}
-    .cert-modal-inner iframe{display:block; width:100%; height:62vh; min-height:320px; max-height:62vh; border:0; flex-shrink:0}
+    .cert-modal-iframe-wrap{width:100%; height:62vh; min-height:320px; max-height:62vh; overflow:hidden; position:relative}
+    .cert-modal-inner iframe{display:block; width:calc(100% + 40px); height:100%; min-height:320px; border:0; position:absolute; left:0; top:0; margin:0}
     .cert-modal-inner{scrollbar-width:none}
     .cert-modal-inner::-webkit-scrollbar{display:none}
     @media (max-width:700px){ .cert-row{grid-template-columns:1fr} .cert-viewer-panel .cert-iframe{min-height:200px} }
@@ -517,14 +519,18 @@
             <p class="cert-desc">Completed structured app development training as an extra-curricular activity.</p>
           </div>
           <div class="panel cert-viewer-panel" id="certPreview" role="button" tabindex="0" aria-label="View certificate full size">
-            <iframe class="cert-iframe" src="App Development Certificate.pdf#toolbar=0&navpanes=0" title="App Development Certificate"></iframe>
+            <div class="cert-iframe-wrap">
+              <iframe class="cert-iframe" src="App Development Certificate.pdf#toolbar=0&navpanes=0" title="App Development Certificate"></iframe>
+            </div>
           </div>
         </div>
         <div class="cert-modal" id="certModal" aria-hidden="true">
           <div class="cert-modal-backdrop" id="certModalBackdrop"></div>
           <div class="cert-modal-inner">
             <button type="button" class="cert-modal-close" id="certModalClose" aria-label="Close">×</button>
-            <iframe src="App Development Certificate.pdf#toolbar=0&navpanes=0" title="App Development Certificate (full size)"></iframe>
+            <div class="cert-modal-iframe-wrap">
+              <iframe src="App Development Certificate.pdf#toolbar=0&navpanes=0" title="App Development Certificate (full size)"></iframe>
+            </div>
           </div>
         </div>
       </div>
