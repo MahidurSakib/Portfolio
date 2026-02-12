@@ -179,17 +179,27 @@
     .cv-project-tags .tag{font-size:.72rem; padding:4px 8px}
     @media (max-width:640px){ .cv-row{grid-template-columns:1fr; gap:4px} }
 
+    /* Research & Projects: title accent, bullets normal */
+    .research-panel{padding:24px 28px}
+    .research-item{margin-bottom:20px}
+    .research-item:last-child{margin-bottom:0}
+    .research-title{margin:0 0 8px; font-family:var(--font); font-weight:700; font-size:1.05rem; color:var(--accent)}
+    .research-bullets{margin:0; padding-left:1.25em; list-style:none}
+    .research-bullets li{margin:.4em 0; font-size:.95rem; line-height:1.55; color:var(--text); position:relative}
+    .research-bullets li::before{content:'* '; position:absolute; left:-1.25em}
+    .research-divider{border:0; border-top:2px solid color-mix(in oklab, var(--text) 15%, transparent); margin:24px 0}
+
     /* Skills: bold category + comma-separated items, same color */
     .skills-panel{padding:24px 28px}
     .skills-line{margin:0 0 .65em; font-size:.95rem; line-height:1.55; color:var(--text)}
     .skills-line:last-child{margin-bottom:0}
-    .skills-cat{font-weight:700; color:var(--text)}
+    .skills-cat{font-weight:700; color:var(--accent)}
 
     /* Certifications: left text, right image, same row */
     .cert-row{display:grid; grid-template-columns:1fr 1fr; gap:20px; align-items:stretch}
     .cert-panel{padding:24px 28px; margin:0; display:flex; flex-direction:column; justify-content:center}
     .cert-head{display:flex; justify-content:space-between; align-items:baseline; gap:12px; margin-bottom:10px}
-    .cert-title{margin:0; font-family:var(--font); font-weight:700; font-size:1.05rem; color:var(--accent)}
+    .cert-panel .cert-title{margin:0; font-family:var(--font); font-weight:700; font-size:1.05rem; color:var(--accent)}
     .cert-year{margin:0; font-family:var(--font); font-weight:700; font-size:1rem; color:var(--text)}
     .cert-desc{margin:0; font-size:.95rem; line-height:1.6; color:var(--text)}
     .cert-viewer-panel{padding:0; overflow:hidden; margin:0; border:1px solid color-mix(in oklab, var(--text) 10%, transparent); cursor:pointer; display:flex; min-height:220px}
@@ -396,56 +406,72 @@
       </div>
     </section>
 
-    <!-- ====== PROJECTS (CV-style) ====== -->
+    <!-- ====== RESEARCH & PROJECTS ====== -->
     <section id="projects" aria-labelledby="proj-head">
       <div class="wrap">
         <div class="head">
           <h2 id="proj-head">Research & Projects</h2>
           <div class="sub">Selected work</div>
         </div>
-        <div class="cv-block">
-          <article class="cv-project">
-            <div class="cv-project-head">
-              <h3 class="cv-project-title">Project Title</h3>
-              <span class="cv-project-meta">Date / Duration</span>
-            </div>
-            <p class="cv-project-desc">One-line context: what you built and why.</p>
-            <ul class="cv-bullets">
-              <li>Key achievement or responsibility.</li>
-              <li>Another point (e.g. impact, scope).</li>
+        <div class="panel research-panel">
+          <article class="research-item">
+            <h3 class="research-title">Multimodal Deep Learning for Predicting Mechanical Ventilation Duration (Undergraduate Thesis)</h3>
+            <ul class="research-bullets">
+              <li>Developed a multimodal predictive system combining chest X-ray images and structured clinical data.</li>
+              <li>Implemented CNN-based models (ResNet-18, DenseNet-121) and ensemble learning methods with attention-based fusion.</li>
+              <li>Evaluated model performance using regression and correlation metrics with explainability analysis (Grad-CAM, SHAP).</li>
             </ul>
-            <div class="cv-project-tags">
-              <span class="tag">Python</span><span class="tag">TensorFlow</span><span class="tag">Git</span>
-            </div>
-            <p style="margin:8px 0 0"><a class="inline" href="#" target="_blank" rel="noopener">View more →</a></p>
           </article>
-          <article class="cv-project">
-            <div class="cv-project-head">
-              <h3 class="cv-project-title">Another Project</h3>
-              <span class="cv-project-meta">2024</span>
-            </div>
-            <p class="cv-project-desc">Brief description. Replace with your own details.</p>
-            <ul class="cv-bullets">
-              <li>Main contribution or outcome.</li>
+          <article class="research-item">
+            <h3 class="research-title">BRAC University Indoor Games Club - Web Management System</h3>
+            <ul class="research-bullets">
+              <li>Developed a full-stack web application to manage club members, events, feedback, and payments with secure user and admin workflows.</li>
+              <li>Tools & Technologies: PHP, MySQL, HTML, CSS, JavaScript.</li>
             </ul>
-            <div class="cv-project-tags">
-              <span class="tag">C</span><span class="tag">MySQL</span>
-            </div>
-            <p style="margin:8px 0 0"><a class="inline" href="#" target="_blank" rel="noopener">Demo / Repo →</a></p>
           </article>
-          <article class="cv-project">
-            <div class="cv-project-head">
-              <h3 class="cv-project-title">Activity / Volunteer Work</h3>
-              <span class="cv-project-meta">Optional</span>
-            </div>
-            <p class="cv-project-desc">Community work or achievements.</p>
-            <ul class="cv-bullets">
-              <li>Role and impact.</li>
+          <article class="research-item">
+            <h3 class="research-title">Employee Management and Payroll System</h3>
+            <ul class="research-bullets">
+              <li>Built a role-based employee and payroll management system with separate admin and employee dashboards and secure backend services.</li>
+              <li>Tools & Technologies: MERN Stack (MongoDB, Express.js, React, Node.js), JWT authentication, RESTful APIs.</li>
             </ul>
-            <div class="cv-project-tags">
-              <span class="tag">Community</span>
-            </div>
-            <p style="margin:8px 0 0"><a class="inline" href="#" target="_blank" rel="noopener">Learn more →</a></p>
+          </article>
+          <hr class="research-divider" />
+          <article class="research-item">
+            <h3 class="research-title">CampusOrbit - All-in-One Student Engagement System</h3>
+            <ul class="research-bullets">
+              <li>Designed and developed a MERN-based student engagement platform to centralize campus events, club activities, and student participation workflows.</li>
+              <li>Implemented event interaction features including RSVP management, attendee tracking, automated notifications, and sponsorship request handling for organizers and club officers.</li>
+              <li>Tools & Technologies: MERN Stack, RESTful architecture, role-based access control, modular system design.</li>
+            </ul>
+          </article>
+          <article class="research-item">
+            <h3 class="research-title">Non-Deterministic Generative Modeling using β-Variational Autoencoders</h3>
+            <ul class="research-bullets">
+              <li>Developed a β-Variational Autoencoder (VAE) for unsupervised data generation, modeling latent uncertainty and comparing stochastic behavior against a deterministic Autoencoder baseline.</li>
+              <li>Tools & Technologies: PyTorch, MNIST dataset, CNN-based encoder-decoder architecture, reconstruction MSE, uncertainty visualization using multi-sample outputs and variance analysis.</li>
+            </ul>
+          </article>
+          <article class="research-item">
+            <h3 class="research-title">Enhanced Weather Forecast Classification</h3>
+            <ul class="research-bullets">
+              <li>Developed a machine learning-based classification system to predict weather types using structured meteorological data with systematic preprocessing and feature analysis.</li>
+              <li>Tools & Technologies: Python, scikit-learn, Pandas, NumPy; trained and compared Logistic Regression, KNN, Decision Tree and Random Forest models.</li>
+            </ul>
+          </article>
+          <article class="research-item">
+            <h3 class="research-title">Attention-Enhanced U-Net for Joint Image Segmentation and Classification</h3>
+            <ul class="research-bullets">
+              <li>Developed a deep learning pipeline for joint image segmentation and classification using U-Net and Attention U-Net architectures with an integrated classifier head.</li>
+              <li>Tools & Technologies: PyTorch, Attention U-Net, CNNs; evaluated using mIoU, Dice coefficient, pixel accuracy, and classification metrics with qualitative mask visualization.</li>
+            </ul>
+          </article>
+          <article class="research-item">
+            <h3 class="research-title">GuardianBot - Obstacle Avoiding, Rain Detecting, and Light Sensing Robot</h3>
+            <ul class="research-bullets">
+              <li>Developed an autonomous Arduino robot that navigates safely by avoiding obstacles, detecting rain to trigger an umbrella mechanism, and halting motion under low-light conditions.</li>
+              <li>Tools & Technologies: Arduino Uno, Ultrasonic Sensor, Rain Sensor, LDR, DC motors, Servo motors, L293D motor driver.</li>
+            </ul>
           </article>
         </div>
       </div>
@@ -482,14 +508,14 @@
             <p class="cert-desc">Completed structured app development training as an extra-curricular activity.</p>
           </div>
           <div class="panel cert-viewer-panel" id="certPreview" role="button" tabindex="0" aria-label="View certificate full size">
-            <iframe class="cert-iframe" src="App Development Certificate.pdf#toolbar=0" title="App Development Certificate"></iframe>
+            <iframe class="cert-iframe" src="App Development Certificate.pdf#toolbar=0&navpanes=0" title="App Development Certificate"></iframe>
           </div>
         </div>
         <div class="cert-modal" id="certModal" aria-hidden="true">
           <div class="cert-modal-backdrop" id="certModalBackdrop"></div>
           <div class="cert-modal-inner">
             <button type="button" class="cert-modal-close" id="certModalClose" aria-label="Close">×</button>
-            <iframe src="App Development Certificate.pdf#toolbar=0" title="App Development Certificate (full size)"></iframe>
+            <iframe src="App Development Certificate.pdf#toolbar=0&navpanes=0" title="App Development Certificate (full size)"></iframe>
           </div>
         </div>
       </div>
